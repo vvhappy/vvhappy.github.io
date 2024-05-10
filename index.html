@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>张维为 - 复旦大学中国研究院，上海春秋发展战略研究院</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content=""/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body ms-controller="fuyuko">
+<div class="banner" id="banner">
+    <div class="header-w3layouts">
+        <!-- Navigation -->
+        <div class="container">
+            <div class="header-bar">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header navbar-left">
+                        <h1><a class="navbar-brand brand_title" href="#">{{web_title}}</a></h1>
+                    </div>
+                    <div class="navbar-right">
+                        <span class="sub_title">{{sub_title}}</span>
+                    </div>
+                </nav>
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+    <!-- <div class="mid_title">
+        <h1 class="page_title">{{page_title}} </h1>
+    </div> -->
+</div>
+<div class="days-coming" ms-visible="@start_date && @start_date != ''">
+    <div class="container">
+        <h3 class="title tittle">WE HAVE BEEN TOGETHER</h3>
+        <div class="timer_wrap">
+            <div id="counter">
+                <div class="count_day" id="count_day"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <!--ms-for: part_info in @image_json-->
+    <div class="span_text" ms-visible="part_info['photo_info'].length > 0">
+        <span class="part_title">{{part_info.part_title}}</span>
+        <span class="part_desc">{{part_info.part_desc}}</span>
+    </div>
+    <section>
+        <div ms-for="img in part_info['photo_info']" class="img_layout flex_img" :mouseenter="@show_photo_desc(img)"
+             ms-mouseleave="@hide_photo_desc(img)"
+             ms-css="{width: img.flex + 'px', 'flex-grow': img.flex}" ms-click="@show_middle_image(img)">
+            <i ms-css="{paddingBottom: img.small_height / img.small_width * 100 + '%'}"></i>
+            <img :attr="{src: img.small, alt: img.desc}" class="img">
+            <div ms-visible="@img.show_desc == true" class="photo_desc" :attr="{id: img.id + 'desc'}">
+                <h4 class="desc_text">{{img.name}}</h4>
+                <p class="desc_text">{{img.desc}}</p>
+            </div>
+        </div>
+    </section>
+    <!--ms-for-end:-->
+    <div class="myModal" id="middle_picture" title="双击可以退出大图模式">
+        <div ms-visible="@load_image == true" class="load_img" id="load_img">
+            <img src="assets/images/loading.gif" class="load_image">
+        </div>
+        <img :attr="{src: @show_image_url}" class="middle_image" id="middle_image" ondblclick="hide_image()">
+        <div class="middle_image_desc" id="middle_image_desc">
+            <h4 class="middle_desc_text_title" >{{middle_image_name}}</h4>
+            <p class="middle_desc_text">{{middle_image_desc}}</p>
+            <button class="btn-primary" ms-visible="false" id="middle_desc_text">test</button>
+        </div>
+    </div>
+</div>
+    <hr class="featurette-divider nav_footer">
+    <footer>
+        <p><a href="#"> vvhappy.github.io&copy;2024</a></p>
+    </footer>
+
+<!--booststrap-->
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+<!--//booststrap end-->
+<!-- font-awesome icons -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- //font-awesome icons -->
+<!--stylesheets-->
+<link href="assets/css/style.css" rel='stylesheet' type='text/css' media="all">
+<link href="assets/css/my_style.css" rel="stylesheet" type="text/css">
+<!--//stylesheets-->
+<link href="http://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+<!--js working-->
+<script type='text/javascript' src='https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js'></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<!-- //js  working-->
+<script src="https://cdn.bootcss.com/avalon.js/2.2.7/avalon.min.js"></script>
+<script src="image_json.js"></script>
+
+<script src="assets/js/script.js"></script>
+</body>
+
+</html>
